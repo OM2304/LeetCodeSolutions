@@ -11,30 +11,27 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head==NULL)return head;
-
-        int n = 1;
+        if(head==NULL || k==0) return head;
         ListNode* last = head;
+        int n = 1;
         while(last->next!=NULL) {
             n++;
             last = last->next;
         }
 
         k = k%n;
-        if(k==0) return head;
+        if(k==n || k==0) return head;
 
-        ListNode* breakNode = head;
-        int count = n-k;
-        while(--count) {
+        ListNode *breakNode = head;
+        int times = n-k;
+        while(--times) {
             breakNode = breakNode->next;
         }
-        
-        ListNode* res = breakNode->next;
+        ListNode* start = breakNode->next;
 
-        //Now we got all the Nodes it's time for joining the Links
         last->next = head;
         breakNode->next = NULL;
-        head = res;
+        head = start;
         return head;
     }
 };
