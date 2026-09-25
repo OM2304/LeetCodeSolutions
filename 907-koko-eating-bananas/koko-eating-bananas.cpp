@@ -1,32 +1,24 @@
-#include <algorithm> // Required for std::max_element
 class Solution {
 public:
-    long long check(vector<int>& a, int n, int speed) {
-        long long hours = 0;
-        for(int i=0; i<n; i++) {
-            hours = hours + (a[i]/speed);
-            if(a[i]%speed != 0) hours++;
-        }
-        return hours;
-    }
-
     int minEatingSpeed(vector<int>& piles, int h) {
-        int low = 1;
-        int high = *max_element(piles.begin(), piles.end());
-        int res = -1;
-        int n = piles.size();
+        int hi = *max_element(piles.begin(), piles.end());
+        int ans=hi, l=1;
 
-        while(low<=high) {
-            int guess = low + (high-low) / 2;
-            long long hours = check(piles, n, guess);
+        while(l<=hi) {
+            int m = (l+hi)/2;
+            long long hrs=0;
 
-            if(hours>h) low = guess+1;
+            for(int i=0; i<piles.size(); i++) {
+                hrs += ceil((double)piles[i] / m);
+            }
 
-            else {
-                res = guess;
-                high = guess-1;
+            if(hrs<=h) {
+                ans=m;
+                hi=m-1;
+            } else {
+                l=m+1;
             }
         }
-        return res;
+        return ans;
     }
 };
