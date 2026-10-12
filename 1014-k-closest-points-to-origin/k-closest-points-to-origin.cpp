@@ -16,7 +16,7 @@ public:
         priority_queue<pair<float, int>, vector<pair<float,int>>, cmp> heap;
 
         for(int i=0; i<n; i++) {
-            float dis = sqrt((points[i][0] * points[i][0]) + (points[i][1] * points[i][1]));
+            float dis = ((points[i][0] * points[i][0]) + (points[i][1] * points[i][1]));
             heap.push({dis, i});
         }
 
