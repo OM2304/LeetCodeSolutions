@@ -15,13 +15,17 @@ public:
         vector<vector<int>> res;
         priority_queue<pair<float, int>, vector<pair<float,int>>, cmp> heap;
 
-        for(int i=0; i<n; i++) {
+        for(int i=0; i<k; i++) {
             float dis = ((points[i][0] * points[i][0]) + (points[i][1] * points[i][1]));
             heap.push({dis, i});
         }
 
-        for(int i=0; i<(n-k); i++) {
-            heap.pop();
+        for(int i=k; i<n; i++) {
+            float dis = ((points[i][0] * points[i][0]) + (points[i][1] * points[i][1]));
+            if(dis < heap.top().first) {
+                heap.pop();
+                heap.push({dis, i});
+            }
         }
 
         for(int i=0; i<k; i++) {
