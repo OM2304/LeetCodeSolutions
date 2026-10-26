@@ -3,11 +3,13 @@
  * @return {number}
  */
 var argumentsLength = function(...args) {
-    let count = 0;
-    for(key in args) {
-        count++;
-    }
-    return count;
+    // let count = 0;
+    // for(key in args) {
+    //     count++;
+    // }
+    // return count;
+
+    return Object.keys(args).length;
 };
 
 /**
