@@ -8,7 +8,6 @@ public:
         for(int i=0; i<s.size(); i++) {
             int product = map[s[i]]*(i+1);
             sum += product;
-            cout<<map[s[i]]<<" "<<i+1<<" "<<product<<endl;
         }
         return sum;
     }
