@@ -13,11 +13,11 @@ class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         if(root==NULL) return {};
-        int ltoR = 1;
+        queue<TreeNode*> q;
         vector<vector<int>> res;
 
-        queue<TreeNode*> q;
         q.push(root);
+        int ltoR = 1;
 
         while(!q.empty()) {
             int lvlSize = q.size();
