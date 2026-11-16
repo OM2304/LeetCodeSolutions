@@ -18,10 +18,9 @@ class Solution {
         v.push_back(root->val);
 
         if(root->left==NULL && root->right==NULL) {
-            if(sum==t) {
+            if(sum==t)
                 res.push_back(v);
-                return;
-            }
+            return;
         }
 
         fun(root->left, sum, t, v);
