@@ -11,12 +11,11 @@
  */
 class Solution {
     vector<vector<int>> res;
-    void fun(TreeNode* root, int sum, int t, vector<int> v, bool equal) {
+    void fun(TreeNode* root, int sum, int t, vector<int> v) {
         if(root==NULL) return;
 
         sum+=root->val;
         v.push_back(root->val);
-        // if(sum==t) equal=true;
 
         if(root->left==NULL && root->right==NULL) {
             if(sum==t) {
@@ -25,14 +24,14 @@ class Solution {
             }
         }
 
-        fun(root->left, sum, t, v, equal);
-        fun(root->right, sum, t, v, equal);
+        fun(root->left, sum, t, v);
+        fun(root->right, sum, t, v);
         return;
     }
 public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         vector<int> v;
-        fun(root, 0, targetSum, v, false);
+        fun(root, 0, targetSum, v);
         return res;
     }
 };
