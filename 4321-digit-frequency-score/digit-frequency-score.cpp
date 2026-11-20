@@ -1,19 +1,19 @@
-#include<string>
 class Solution {
 public:
     int digitFrequencyScore(int n) {
-        int res=0;
-        unordered_map<int, int> f;
-        string s = to_string(n);
-        for(char c:s) {
-            f[c-'0']++;
-        }
-        for(auto x:f) {
-            int d = x.first;
-            int frq = x.second;
-            res += (d*frq);
-        }
-        return res;
+        int freq[10] = {0};
+        int res = 0;
 
+        while(n > 0) {
+            int d = n % 10;
+            freq[d]++;
+            n /= 10;
+        }
+
+        for(int i = 0; i < 10; i++) {
+            res += i * freq[i];
+        }
+
+        return res;
     }
 };
